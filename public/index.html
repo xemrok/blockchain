@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.sass">
+</head>
+
+<body>
+
+<button id="createBlock">Create block</button>
+<button id="createNotValidBlock">Create not valid block</button>
+<button id="showAllChain">Show all chain</button>
+
+<script>
+    let count = 0;
+
+    document.getElementById('createBlock').onclick = () => {
+        count += 1;
+        const request = new XMLHttpRequest();
+        const url = "/createBlock";
+        const params = 'data=' + count;
+
+        request.responseType = "json";
+        request.open("POST", url, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.addEventListener("readystatechange", () => {
+
+            if (request.readyState === 4 && request.status === 200) {
+                let obj = request.response;
+                console.log(obj);
+            }
+        });
+
+        request.send(params);
+    };
+
+    document.getElementById('createNotValidBlock').onclick = () => {
+        count += 1;
+        const request = new XMLHttpRequest();
+        const url = "/createNotValidBlock";
+        const params = 'data=' + count;
+
+        request.responseType = "json";
+        request.open("POST", url, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.addEventListener("readystatechange", () => {
+
+            if (request.readyState === 4 && request.status === 200) {
+                let obj = request.response;
+                console.log(obj);
+            }
+        });
+
+        request.send(params);
+    };
+
+    document.getElementById('showAllChain').onclick = () => {
+        count += 1;
+        const request = new XMLHttpRequest();
+        const url = "/showAllChain";
+
+        request.responseType = "json";
+        request.open("GET", url, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.addEventListener("readystatechange", () => {
+
+            if (request.readyState === 4 && request.status === 200) {
+                let obj = request.response;
+                console.log(obj);
+            }
+        });
+
+        request.send();
+    }
+</script>
+</body>
+
+</html>
